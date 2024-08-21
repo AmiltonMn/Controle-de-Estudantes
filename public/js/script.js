@@ -1,6 +1,7 @@
-let botao = document.getElementById('theme');
-let newImage = document.getElementById('newUserImage');
-let userImage = document.getElementById('userImage')
+const botao = document.getElementById('theme');
+const newImage = document.getElementById('newImage');
+const userImage = document.getElementById('userImage');
+
 botao.addEventListener('input', darkMode);
 
 function darkMode()
@@ -17,18 +18,21 @@ function darkMode()
     }
 }
 
-function upImage()
+function imgClick()
 {
     newImage.click();
-    if(newImage.files.length == 0)
+}
+
+newImage.addEventListener('change', () =>
+{
+    if(newImage.files.lenght == 0)
     {
-        return;
+        return 0;
     }
     let reader = new FileReader();
-
     reader.readAsDataURL(newImage.files[0]);
-
-    reader.onload = () => {
-        userImage.src = reader.result;
-    }
-}
+    reader.onload = () => 
+    (
+        userImage.src = reader.result
+    )
+});

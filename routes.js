@@ -12,19 +12,19 @@ const multer = require("multer");
 // Recebendo arquivo do multer que criamos
 const config = require('./src/config/multer');
 
+const editar = require('./src/controllers/editar');
 
 // Iniciando as rotas
 route.get('/home', home.pagInicialGet);
-
-route.get('/sala', cadastro.sala);
-
-route.get('/aluno', cadastro.aluno);
-
-route.post('/sala', cadastro.salaInsert);
-
 route.post('/home', home.pagInicialPost);
 
-// Cadastro de aluno irá receber um arquivo com o "name" do HTML chamado de "newUserImage"
-route.post('/aluno', multer(config).single('newUserImage'), cadastro.alunoInsert);
+route.get('/sala', cadastro.sala);
+route.post('/sala', cadastro.salaInsert);
+
+route.get('/aluno', cadastro.aluno);
+route.post('/aluno', multer(config).single('newImage'), cadastro.alunoInsert);
+
+route.get('/editarAluno/:id', editar.alunos);
+route.post('/editarAluno/:id', multer(config).single('newImage'), editar.adicionar);
 
 module.exports = route;

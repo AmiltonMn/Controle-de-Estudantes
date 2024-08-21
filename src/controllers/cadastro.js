@@ -34,21 +34,19 @@ module.exports = {
 
         const dados = req.body;
 
-        console.log(req);
-
         let foto = 'usuario.png';
 
-        // if (req.file) {
-        //     foto = req.file.filename;
-        // };
+        if (req.file) {
+            foto = req.file.filename;
+        };
 
-        // await aluno.create ({
-        //     Nome: dados.nomeAluno,
-        //     Idade: dados.idadeAluno,
-        //     Sexo: dados.sexoAluno,
-        //     IDSala: dados.IDSalaAluno,
-        //     Foto: foto
-        // });
+        await aluno.create ({
+            Nome: dados.nomeAluno,
+            Idade: dados.idadeAluno,
+            Sexo: dados.sexoAluno,
+            IDSala: dados.IDSalaAluno,
+            Foto: foto
+        });
 
         res.redirect('/home');
     },
