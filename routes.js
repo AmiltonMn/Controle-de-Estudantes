@@ -27,4 +27,7 @@ route.post('/aluno', multer(config).single('newImage'), cadastro.alunoInsert);
 route.get('/editarAluno/:id', editar.alunos);
 route.post('/editarAluno/:id', multer(config).single('newImage'), editar.adicionar);
 
+route.get('/editarSala/:id', editar.salas);
+route.post('/editarSala/:id', editar.salaUpdate);
+
 module.exports = route;

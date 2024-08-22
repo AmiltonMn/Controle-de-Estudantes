@@ -26,7 +26,15 @@ module.exports = {
             raw: true,
             attributes: ['IDSala', 'Nome']
         });
+        
+        const qtdAlunos = await aluno.findAll({
+            raw: true,
+            attributes: ['IDSala'],
+            where: {IDSala: id}
+        });
 
-        res.render('../views/home', {salas, alunos, id});
+        qtdAlunos = qtdAlunos.length;
+
+        res.render('../views/home', {salas, alunos, id, qtdAlunos});
     }
 }

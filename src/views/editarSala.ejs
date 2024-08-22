@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Alunos</title>
-    <link rel="stylesheet" href="../css/alunos.css">
-    <script src="js/script.js" defer></script>
+    <title>Cadastro de Salas</title>
+    <link rel="stylesheet" href="../css/salas.css">
+    <script src="../js/script.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
     <header class="shadow">
-        <nav class="d-flex p-3 bd-highlight mb-3 navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="d-flex p-3 bd-highlight mb-3 navbar navbar-expand-lg bg-body-tertiary ">
             <div class="container-fluid">
             <a class="navbar-brand" href="/home"><span class="tituloDiferente">CONTROLE</span><strong> de Estudantes</strong></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,8 +19,8 @@
             </button>
             <div class="p-2 bd-highlight d-flex align-items-center" id="navbarNavAltMarkup">
                 <div class="navbar-nav d-flex text-center align-items-center">
-                    <a class="nav-link" href="/aluno"><strong>Alunos</strong></a>
-                    <a class="nav-link" href="/sala">Salas</a>
+                    <a class="nav-link" href="/aluno">Alunos</a>
+                    <a class="nav-link" href="/sala"><strong>Salas</strong></a>
                 </div>
                 <input type="checkbox" name="" id="theme">
                 <label for="theme"><span id="span-theme" class="material-symbols-outlined">dark_mode</span></label>
@@ -29,42 +29,25 @@
         </nav>
     </header>
     <main>
-        <div class="container mt-5 border p-5 col-md-4 justify-content-center">
-            <form class="row g-3 col-md-12 justify-content-center" enctype="multipart/form-data" action="/aluno" method="post">
-                <h1 class="text-center">Cadastrar um novo Aluno</h1>
+        <div class="container mt-5 border p-3 col-md-4">
+            <h1><%= qtdAlunos.length %></h1>
+            <form class="row g-3 col-md-12 d-flex justify-content-center align-items-center" method="post">
+                <h1 class="text-center">Editar Sala</h1>
 
-                <div class="col-md-12 d-flex justify-content-center">
-                    <img src="https://cdn-icons-png.freepik.com/512/535/535277.png" alt="" onclick="imgClick()" id="userImage">
-                    <input type="file" name="newImage" id="newImage" accept="image/">
-                </div>
-      
                 <div class="col-md-12">
                     <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" name="nomeAluno" placeholder="Ex: Fulano de Tal">
+                    <input name="Nome" type="text" class="form-control" value="<%= salas.Nome %>">
                 </div>
 
                 <div class="col-md-12">
-                    <label class="form-label">Idade</label>
-                    <input type="number" class="form-control" name="idadeAluno" placeholder="0">
+                    <label class="form-label">Capacidade</label>
+                    <input name="Capacidade" type="number" class="form-control" value="<%= salas.Capacidade %>">
                 </div>
 
-                <div class="col-md-12">
-                    <label class="form-label">Sexo</label>
-                    <input type="text" class="form-control" name="sexoAluno" placeholder="Ex: Masculino/Feminino">
-                </div>
-
-                <div class="col-md-12">
-                    <label class="form-label">Sala</label>
-                    <select name="IDSalaAluno" class="form-select" required>
-                        <% for (let i=0; i<salas.length; i++) { %>
-                            <option value='<%= salas[i].IDSala %>'> <%= salas[i].Nome %> </option>
-                        <% } %>
-                    </select>
-                </div>
                 <div class="col-12 text-center">
-                        <!-- <button type="submit" class="btn btn-primary">Cadastrar</button> -->
-                        <input type="submit" value="Cadastrar" class="btn btn-primary" >
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </div>
+
             </form>
         </div>
     </main>

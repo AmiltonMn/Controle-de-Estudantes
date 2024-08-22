@@ -54,3 +54,9 @@ input
     height: min-content;
     width: 100px;
 }
+
+#card
+{
+    box-shadow: 6px 6px 0px 0px #b7b7b7; 
+    margin: 5px;
+}
