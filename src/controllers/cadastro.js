@@ -1,5 +1,7 @@
 const sala = require('../model/sala');
 const aluno = require('../model/aluno');
+const { raw } = require('express');
+const { Sequelize } = require('sequelize');
 
 module.exports = {
     async sala(req, res){
@@ -9,8 +11,8 @@ module.exports = {
     async aluno(req, res){
         const salas = await sala.findAll({
             raw: true,
-            attributes: ['IDSala', 'Nome']
-        });
+            attributes: ['IDSala', 'Nome', 'Capacidade']
+        })
 
         res.render('../views/aluno', {salas});
     },

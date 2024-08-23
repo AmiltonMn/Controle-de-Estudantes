@@ -13,7 +13,7 @@ module.exports = {
             raw: true,
             attributes: ['Nome', 'Idade', 'Sexo', 'Foto', 'IDSala']
         });
-
+        
         const salas = await sala.findAll ({raw: true, attributes: ['IDSala', 'Nome'] });
 
         res.render('../views/editarAluno', {salas, alunos});
@@ -56,6 +56,7 @@ module.exports = {
     async salas(req, res)
     {
         parametro = req.params.id;
+        error = req.body.error;
         console.log(parametro);
 
         const salas = await sala.findByPk(parametro, {
@@ -63,21 +64,44 @@ module.exports = {
             attributes: ['IDSala', 'Nome', 'Capacidade']
         });
 
-        const qtdAlunos = await aluno.findAll({
+        let qtdAlunos = await aluno.findAll({
             raw: true,
             attributes: ['IDSala'],
             where: {IDSala: parametro}
         });
 
-        console.log(qtdAlunos);
+        qtdAlunos = qtdAlunos.length;
 
-        res.render('../views/editarSala', {salas, qtdAlunos})
+        res.render('../views/editarSala', {salas, qtdAlunos, error})
     },
 
     async salaUpdate(req, res)
     {
         const dados = req.body;
         const id = req.params.id;
+        let error;
+
+        const salas = await sala.findByPk(parametro, {
+            raw: true,
+            attributes: ['IDSala', 'Nome', 'Capacidade']
+        });
+
+        let qtdAlunos = await aluno.findAll({
+            raw: true,
+            attributes: ['IDSala'],
+            where: {IDSala: parametro}
+        });
+
+        qtdAlunos = qtdAlunos.length;
+
+        if(dados.Capacidade < qtdAlunos)
+        {
+            error = 1;
+            res.render('../views/editarSala', {salas, qtdAlunos, error});
+            return 0;
+        } else {
+            error = null;
+        }
 
         await sala.update({
             Nome: dados.Nome,

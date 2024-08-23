@@ -28,10 +28,18 @@
             </div>
         </nav>
     </header>
+
+    <!-- Alert box da Capacidade inserida, se a nova capacidade da sala alterada for menor que a quantidade de alunos cadastrados nessa sala, a página será renderizada novamente com o alertbox -->
+    <% if(error != null) { %>
+        <script>
+            alert("Capacidade inserida é inválida!")
+        </script>
+    <% } %>
+
     <main>
         <div class="container mt-5 border p-3 col-md-4">
-            <h1><%= qtdAlunos.length %></h1>
             <form class="row g-3 col-md-12 d-flex justify-content-center align-items-center" method="post">
+
                 <h1 class="text-center">Editar Sala</h1>
 
                 <div class="col-md-12">
@@ -44,8 +52,13 @@
                     <input name="Capacidade" type="number" class="form-control" value="<%= salas.Capacidade %>">
                 </div>
 
+                <div class="col-md-12">
+                    <label class="form-label">Quantidade de Alunos</label>
+                    <input name="Capacidade" type="number" class="form-control text-center" value="<%= qtdAlunos %>" disabled>
+                </div>
+
                 <div class="col-12 text-center">
-                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                    <button type="submit" class="btn btn-primary">Atualizar</button>
                 </div>
 
             </form>

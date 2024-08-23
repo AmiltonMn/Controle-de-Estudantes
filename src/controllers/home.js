@@ -24,10 +24,16 @@ module.exports = {
         
         const salas = await sala.findAll ({
             raw: true,
-            attributes: ['IDSala', 'Nome']
+            attributes: ['IDSala', 'Nome', 'Capacidade']
+        });
+
+        let vagasDisp = await sala.findAll({
+            raw: true,
+            attributes:['Capacidade'],
+            where: { IDSala: id }
         });
         
-        const qtdAlunos = await aluno.findAll({
+        let qtdAlunos = await aluno.findAll({
             raw: true,
             attributes: ['IDSala'],
             where: {IDSala: id}
@@ -35,6 +41,13 @@ module.exports = {
 
         qtdAlunos = qtdAlunos.length;
 
-        res.render('../views/home', {salas, alunos, id, qtdAlunos});
+        if(id > 0)
+        {
+            vagasDisp = vagasDisp[0].Capacidade - qtdAlunos;
+        }
+
+        console.log(vagasDisp);
+
+        res.render('../views/home', {salas, alunos, id, vagasDisp, qtdAlunos});
     }
 }

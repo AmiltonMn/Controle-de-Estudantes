@@ -60,8 +60,10 @@
                     <div class="user-box">
                         <label class="form-label">Sala</label>
                         <select name="IDSalaAluno" class="form-select" required>
-                            <% for (let i=0; i<salas.length; i++) { %>
-                                <option value='<%= salas[i].IDSala %>'> <%= salas[i].Nome %> </option>
+                            <% for (let i = 0; i < salas.length; i++) { %>
+                                <% if (salas[i].Capacidade) > qtdAlunos) { %> 
+                                    <option value='<%= salas[i].IDSala %>'> <%= salas[i].Nome %> </option>
+                                <% } %>
                             <% } %>
                         </select>
                     </div>
